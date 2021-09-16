@@ -1,6 +1,7 @@
 import { StartConversationUseCase } from './start-conversation'
 import { mockDialogflow } from '@/services/mocks/dialogflow'
 import { Dialogflow } from '@/services/contracts/dialogflow'
+import { throwError } from '@/common/tests'
 
 const mockMessage = (): string => 'This is a mock message.'
 
@@ -21,6 +22,13 @@ const makeSut = (): SutTypes => {
 }
 
 describe('Start Conversation Use Case', () => {
+  test('Should throw if trigger intent throws throws', async () => {
+    const { sut, dialogflow } = makeSut()
+    jest.spyOn(dialogflow, 'triggerIntent').mockImplementationOnce(throwError)
+    const promise = sut.execute()
+    await expect(promise).rejects.toThrow()
+  })
+
   test('Should call trigger intent with right values', async () => {
     const { sut, dialogflow } = makeSut()
     const dialogSpy = jest.spyOn(dialogflow, 'triggerIntent')
