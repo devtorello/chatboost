@@ -10,8 +10,9 @@ type SutTypes = {
 }
 
 const makeSut = (): SutTypes => {
+  const event = 'any_event'
   const dialogflow = mockDialogflow()
-  const sut = new StartConversationUseCase({ dialogflow })
+  const sut = new StartConversationUseCase({ dialogflow }, event)
 
   return {
     sut,
