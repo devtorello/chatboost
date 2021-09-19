@@ -1,3 +1,3 @@
 export interface Dialogflow {
-  triggerIntent: (event: string) => Promise<string>
+  triggerIntent: (event: string) => Promise<any>
 }
