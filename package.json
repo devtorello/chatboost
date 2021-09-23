@@ -1,28 +1,14 @@
 {
   "name": "chatboost",
   "version": "0.0.1",
-  "description": "A chatbot made with typescript and dialogflow",
   "main": "index.js",
+  "description": "A chatbot made with typescript and dialogflow",
   "scripts": {
     "test": "jest --passWithNoTests --silent --noStackTrace --runInBand",
     "test:unit": "npm test -- --watch -c jest-unit-config.js",
     "test:integration": "npm test -- --watch -c jest-integration-config.js",
     "test:ci": "npm test -- --coverage"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/vitorellotati/chatboost.git"
-  },
-  "keywords": [
-    "chatbot",
-    "typescript"
-  ],
-  "author": "Tatiana Vitorello <vitorellotts@gmail.com>",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/vitorellotati/chatboost/issues"
-  },
-  "homepage": "https://github.com/vitorellotati/chatboost#readme",
   "devDependencies": {
     "@types/cors": "^2.8.12",
     "@types/express": "^4.17.13",
@@ -51,5 +37,19 @@
   },
   "_moduleAliases": {
     "@": "dist"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vitorellotati/chatboost.git"
+  },
+  "bugs": {
+    "url": "https://github.com/vitorellotati/chatboost/issues"
+  },
+  "homepage": "https://github.com/vitorellotati/chatboost#readme",
+  "keywords": [
+    "chatbot",
+    "typescript"
+  ],
+  "author": "Tatiana Vitorello <vitorellotts@gmail.com>",
+  "license": "ISC"
 }
