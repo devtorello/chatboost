@@ -1,6 +1,6 @@
 import { HttpController, HttpRequest, HttpResponse } from '@/controllers/contracts'
 import { StartConversation } from '@/usecases/contracts/conversation'
-import { noContent, serverError } from '@/controllers/common/http-returns'
+import { success, serverError } from '@/controllers/common/http-returns'
 
 export class StartConversationController implements HttpController {
   constructor (
@@ -9,10 +9,11 @@ export class StartConversationController implements HttpController {
 
   async handle (request: HttpRequest): Promise<HttpResponse> {
     try {
-      await this.startConversation.execute()
+      const result = await this.startConversation.execute()
 
-      return noContent()
+      return success(result)
     } catch (error) {
+      console.error(error)
       return serverError(error)
     }
   }
