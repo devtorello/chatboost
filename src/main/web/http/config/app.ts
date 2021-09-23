@@ -3,11 +3,11 @@ import express, { Express } from 'express'
 import { setupRoutes } from './routes'
 import cors from 'cors'
 
-export const makeExpressApp = (usecase?: string): Express => {
+export const makeExpressApp = (): Express => {
   const app = express()
   app.use(cors({ origin: true }))
   setupMiddlewares(app)
-  setupRoutes(app, usecase)
+  setupRoutes(app)
 
   return app
 }
