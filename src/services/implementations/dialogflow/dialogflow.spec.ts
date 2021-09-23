@@ -1,9 +1,15 @@
 import { SessionsClient } from '@google-cloud/dialogflow'
+import { mockUUID } from '@/services/mocks/uuid'
 import { DialogflowService } from './dialogflow'
 
 const EVENT = 'any_event'
 
-jest.mock('@google-cloud/dialogflow')
+jest.mock('@google-cloud/dialogflow', () => ({
+  SessionsClient: jest.fn().mockImplementation(() => ({
+    projectAgentSessionPath: () => 'any_path',
+    detectIntent: () => [{ queryResult: { fulfillmentText: 'any_message' } }]
+  }))
+}))
 
 type SutTypes = {
   sut: DialogflowService
@@ -12,7 +18,9 @@ type SutTypes = {
 
 const makeSut = (): SutTypes => {
   const sessions = new SessionsClient()
-  const sut = new DialogflowService(sessions)
+  const uuid = mockUUID()
+  const projectId = 'any_project'
+  const sut = new DialogflowService(sessions, uuid, projectId)
 
   return {
     sut,
@@ -21,10 +29,9 @@ const makeSut = (): SutTypes => {
 }
 
 describe('Dialogflow Service', () => {
-  // TODO: Fix tests after testing the API return
   test('Should return a message', async () => {
     const { sut } = makeSut()
     const result = await sut.triggerIntent(EVENT)
-    expect(result).not.toEqual('This is a mock message.')
+    expect(result).toEqual('any_message')
   })
 })
