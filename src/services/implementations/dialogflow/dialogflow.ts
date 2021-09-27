@@ -26,4 +26,18 @@ export class DialogflowService implements Dialogflow {
 
     return message.queryResult.fulfillmentText
   }
+
+  async conversationIntent (text: string): Promise<any> {
+    const [message] = await this.sessions.detectIntent({
+      session: this.createSession(),
+      queryInput: {
+        text: {
+          text,
+          languageCode: 'pt-BR'
+        }
+      }
+    })
+
+    return message.queryResult.fulfillmentText
+  }
 }
