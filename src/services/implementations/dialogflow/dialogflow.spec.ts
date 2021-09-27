@@ -2,8 +2,7 @@ import { SessionsClient } from '@google-cloud/dialogflow'
 import { mockUUID } from '@/services/mocks/uuid'
 import { DialogflowService } from './dialogflow'
 
-const EVENT = 'any_event'
-const TEXT = 'any text'
+const INTENT = 'any_event'
 
 jest.mock('@google-cloud/dialogflow', () => ({
   SessionsClient: jest.fn().mockImplementation(() => ({
@@ -33,7 +32,7 @@ describe('Dialogflow Service', () => {
   describe('Trigger', () => {
     test('Should return a message', async () => {
       const { sut } = makeSut()
-      const result = await sut.triggerIntent(EVENT)
+      const result = await sut.triggerIntent(INTENT)
       expect(result).toEqual('any_message')
     })
   })
@@ -41,8 +40,8 @@ describe('Dialogflow Service', () => {
   describe('Text', () => {
     test('Should return a text', async () => {
       const { sut } = makeSut()
-      const result = await sut.conversationIntent(TEXT)
-      expect(result).toEqual('any text')
+      const result = await sut.conversationIntent(INTENT)
+      expect(result).toEqual('any_message')
     })
   })
 })
