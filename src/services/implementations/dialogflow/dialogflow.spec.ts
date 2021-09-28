@@ -2,7 +2,7 @@ import { SessionsClient } from '@google-cloud/dialogflow'
 import { mockUUID } from '@/services/mocks/uuid'
 import { DialogflowService } from './dialogflow'
 
-const EVENT = 'any_event'
+const INTENT = 'any_event'
 
 jest.mock('@google-cloud/dialogflow', () => ({
   SessionsClient: jest.fn().mockImplementation(() => ({
@@ -29,9 +29,21 @@ const makeSut = (): SutTypes => {
 }
 
 describe('Dialogflow Service', () => {
-  test('Should return a message', async () => {
-    const { sut } = makeSut()
-    const result = await sut.triggerIntent(EVENT)
-    expect(result).toEqual('any_message')
+  describe('Trigger', () => {
+    // TODO: Add tests to cover all scenarios
+    test('Should return a message', async () => {
+      const { sut } = makeSut()
+      const result = await sut.triggerIntent(INTENT)
+      expect(result).toEqual('any_message')
+    })
+  })
+
+  describe('Text', () => {
+    // TODO: Add more tests to cover all scenarios
+    test('Should return a text', async () => {
+      const { sut } = makeSut()
+      const result = await sut.conversationIntent(INTENT)
+      expect(result).toEqual('any_message')
+    })
   })
 })
