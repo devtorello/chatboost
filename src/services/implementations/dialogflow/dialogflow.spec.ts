@@ -30,6 +30,7 @@ const makeSut = (): SutTypes => {
 
 describe('Dialogflow Service', () => {
   describe('Trigger', () => {
+    // TODO: Add tests to cover all scenarios
     test('Should return a message', async () => {
       const { sut } = makeSut()
       const result = await sut.triggerIntent(INTENT)
@@ -38,6 +39,7 @@ describe('Dialogflow Service', () => {
   })
 
   describe('Text', () => {
+    // TODO: Add more tests to cover all scenarios
     test('Should return a text', async () => {
       const { sut } = makeSut()
       const result = await sut.conversationIntent(INTENT)
